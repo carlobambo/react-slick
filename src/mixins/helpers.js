@@ -50,6 +50,7 @@ var helpers = {
   },
   update: function (props) {
     const slickList = ReactDOM.findDOMNode(this.list);
+    this.props.onBeforeUpdate && this.props.onBeforeUpdate(this.list);
     // This method has mostly same code as initialize method.
     // Refactor it
     var slideCount = React.Children.count(props.children);
@@ -91,6 +92,7 @@ var helpers = {
       var trackStyle = getTrackCSS(assign({left: targetLeft}, props, this.state));
 
       this.setState({trackStyle: trackStyle});
+      this.props.onUpdate && this.props.onUpdate(this.list);
     });
   },
   getWidth: function getWidth(elem) {
